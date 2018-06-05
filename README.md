@@ -6,14 +6,18 @@ Today your task is to implement Redux architecture into your todo app.
 
 ## Release 0
 
-Start by watching [this video](https://www.youtube.com/watch?v=1w-oQ-i1XB8). [This](https://egghead.io/courses/getting-started-with-redux) is also a really good tutorial if you have the time for it.
+Start by watching [this video](https://www.youtube.com/watch?v=1w-oQ-i1XB8). Read [the introduction](https://redux.js.org/introduction) to Redux.  [This](https://egghead.io/courses/getting-started-with-redux) is also a really good tutorial if you have the time for it.
+
+* What do you see as the primary differences between Flux and Redux? 
+* In programming languages, what is a switch?
+* What is a store? What is a reducer? What is an action? What does every action return? Why is connect a HOC?
 
 ## Release 1
 
 Implement Redux in Todos.
 
-* Setup Redux according to the protocol specified in the [docs](https://redux.js.org/).
-* Convert all of your handlers to Redux actions and update state with a reducer. EVERY SINGLE ACTION THAT UPDATES STATE SHOULD BE AN ACTION. YOU SHOULD NOT SEE `setState` ANYWHERE IN YOUR APPLICATION.
+* Setup Redux according to the protocol specified in the [docs](https://redux.js.org/). Note, you should only have to call `connect` once. Connect your application at the highest level and pass props down just like we did with Flux.
+* Convert all of your handlers to Redux actions and update state with a reducer. EVERY SINGLE FUNCTION THAT UPDATES STATE SHOULD BE A REDUX ACTION. YOU SHOULD NOT SEE `setState` ANYWHERE IN YOUR APPLICATION. EVER!
 * Implement undo (this should be pretty easy now!)
 * Stretch: Implement [Immutable JS](https://facebook.github.io/immutable-js/) to ensure that your state remains immutable. Note that you'll probably have to make a lot of small tweaks within your code to successfully implement Immutable. If you are behind and need to catchup, skip ImmutableJS and keep your state immutable by making a new copy of state in your reducer with `JSON.parse(JSON.stringify())`.
 
@@ -26,4 +30,4 @@ In this release, you'll learn how to interact with servers. We're getting closer
 
 ## Release 3
 
-* Whit's Custard on me!
+* You've gotten through the hard part. Whit's Custard on me!
