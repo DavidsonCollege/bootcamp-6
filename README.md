@@ -10,7 +10,7 @@ Start by watching [this video](https://www.youtube.com/watch?v=1w-oQ-i1XB8). Rea
 
 * What do you see as the primary differences between Flux and Redux? 
 * In programming languages, what is a switch?
-* What is a store? What is a reducer? What is an action? What does every action return? Why is connect a HOC?
+* What is a `store`? What is a `reducer`? What is an `action`? What does every action return? Why is `connect` a HOC?
 
 ## Release 1
 
