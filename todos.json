@@ -1,31 +1,36 @@
-[
-  {
-    "description": "Learn React",
-    "completed": true,
-    "color": "red",
-    "dueDate": 1528213744759,
-    "_id": 0.8517449838861129
-  },
-  {
-    "description": "Learn Redux",
-    "completed": false,
-    "color": "orange",
-    "dueDate": 1528213744759,
-    "_id": 0.7985830103571325
-  },
-  { "description": "Sleep", "completed": true, "color": "yellow", "dueDate": 1528213744759, "_id": 0.7482457823972508 },
-  {
-    "description": "Have lots of fun.",
-    "completed": true,
-    "color": "green",
-    "dueDate": 1528213744759,
-    "_id": 0.6057708422243576
-  },
-  {
-    "description": "Become a really great web developer",
-    "completed": false,
-    "color": "blue",
-    "dueDate": 1528213744759,
-    "_id": 0.29483646569546773
-  }
-]
+[{
+	"description": "Learn React",
+	"isComplete": true,
+	"color": "red",
+	"dateDue": 1528213744759,
+	"_id": 0.8517449838861129,
+	"star": false
+}, {
+	"description": "Learn Redux",
+	"isComplete": false,
+	"color": "orange",
+	"dateDue": 1528213744759,
+	"_id": 0.7985830103571325,
+	"star": false
+}, {
+	"description": "Sleep",
+	"isComplete": true,
+	"color": "yellow",
+	"dateDue": 1528213744759,
+	"_id": 0.7482457823972508,
+	"star": false
+}, {
+	"description": "Have lots of fun.",
+	"isComplete": true,
+	"color": "green",
+	"dateDue": 1528213744759,
+	"_id": 0.6057708422243576,
+	"star": false
+}, {
+	"description": "Become a really great web developer",
+	"isComplete": false,
+	"color": "blue",
+	"dateDue": 1528213744759,
+	"_id": 0.29483646569546773,
+	"star": false
+}]
