@@ -25,10 +25,14 @@ export const Orderings ={
 
 export function loadTodos(){
     return (dispatch) =>{ return fetch('https://raw.githubusercontent.com/DavidsonCollege/bootcamp-6/master/todos.json')
-    .then((result) => result.json()).then((todos) => {dispatch({type: LOAD_TODOS, todos: todos})}  )
+    .then((result) => result.json()).then((todos) => {dispatch(createloadTodo(todos))}  )
 
     }
 
+}
+
+export function createloadTodo(todos){
+  return {type:LOAD_TODOS, todos:todos}
 }
 
 export function undo(){
