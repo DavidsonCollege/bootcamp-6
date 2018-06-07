@@ -11,7 +11,8 @@ import {
   COLOR_SET,
   STAR,
   ON_CHANGE,
-  UNDO
+  UNDO,
+  LOAD_TODOS
 } from './actions'
 
 const initialState = {
@@ -60,15 +61,17 @@ function reducer(oldState = initialState, action){
       state.todos.find((todo)=>todo._id===action.id).color = action.color;
       return state;
     case STAR:
-      state.todos.find((todo)=>todo._id===action.id).star = true;
+      state.todos.find((todo)=>todo._id===action.id).star = ! state.todos.find((todo)=>todo._id===action.id).star;
       return state;
     case ON_CHANGE:
       state.input = action.input;
       return state;
     case UNDO:
       state.history.pop();
-
       return state.history.pop();
+    case LOAD_TODOS:
+      action.todos.forEach( todo => state.todos.push(todo));
+      return state;
     default: return state;
   }
 }

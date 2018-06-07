@@ -11,6 +11,7 @@ export const COLOR_SET = 'COLOR_SET'
 export const STAR = 'STAR'
 export const ON_CHANGE = 'ON_CHANGE'
 export const UNDO = 'UNDO'
+export const LOAD_TODOS = 'LOAD_TODOS'
 
 
 export const onAddToDo = (description) => {
@@ -102,3 +103,19 @@ export const onChange = input => {
       type: UNDO
     }
   }
+
+export const addLoadedTodos = (todos) => {
+  return {
+    type: LOAD_TODOS,
+    todos
+  }
+}
+
+  export const loadTodos = () => {
+    return (dispatch) => {
+      fetch('https://raw.githubusercontent.com/DavidsonCollege/bootcamp-6/correctAE/todos.json')
+      .then(res => res.json())
+      .then(todos =>
+        dispatch(addLoadedTodos(todos)));
+        }
+      }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import {CSVLink, CSVDownload} from 'react-csv';
 import {onAddToDo,
 onDeleteTodo,
 deleteAll,
@@ -11,25 +10,14 @@ setOrderingByDate,
 setColor,
 setStar,
 onChange,
-undo
+undo,
+loadTodos,
+
+
 } from './actions'
 
 
 class Todos extends Component {
-  // renderTodo(i){
-  //   return (<Todo value={this.props.todos[i].description}/>);
-  // }
-  // reorder(array){
-  //   let temp = [...array];
-  //   temp.sort((a, b) => a.description.localeCompare(b.description));
-  //   return temp;
-  // // }
-  //
-  // reorderDate(array){
-  //   let temp = [...array];
-  //   temp.sort((a, b) => a.dateDue.localeCompare(b.dateDue));
-  //   return temp;
-  // }
 
   render(){
     let completed = this.props.todos.filter(function (todo) {return todo.isComplete === true});
@@ -46,18 +34,18 @@ class Todos extends Component {
       completed = this.reorderDate(completed);
       uncompleted = this.reorderDate(uncompleted);
     }
-    // this.props.todos.map((todo) => {
-    //   if (todo.isComplete) completed.push(todo);
-    //   else uncompleted.push(todo);
-    // });
 
     return (
 
         <div className="todos-container">
 
-
         <div className="undo button">
           <button onClick={()=> this.props.dispatch(undo())}>Undo </button>
+
+        </div>
+
+        <div className="load button">
+          <button onClick={()=>this.props.dispatch(loadTodos())}>Load </button>
 
         </div>
 
