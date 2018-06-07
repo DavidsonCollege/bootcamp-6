@@ -23,7 +23,7 @@ const initialState = {
  history: []
 };
 
-function reducer(oldState = initialState, action){
+function ourReducer(oldState = initialState, action){
 
   let state = JSON.parse(JSON.stringify(oldState));
   state.history.push(oldState);
@@ -75,4 +75,4 @@ function reducer(oldState = initialState, action){
     default: return state;
   }
 }
-export default reducer;
+export default ourReducer;

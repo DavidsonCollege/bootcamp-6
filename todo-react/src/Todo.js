@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import AddForm from './AddForm';
+
 import {onAddToDo,
 onDeleteTodo,
 deleteAll,
@@ -18,6 +20,10 @@ loadTodos,
 
 
 class Todos extends Component {
+  //
+  // submit = (values) => {
+  //   return this.props.dispatch(onAddToDo(values));
+  // }
 
   render(){
     let completed = this.props.todos.filter(function (todo) {return todo.isComplete === true});
@@ -136,6 +142,9 @@ class Todos extends Component {
           })
         }
       </div>
+      // <div>
+      // <AddForm onSubmit={values => this.submit(values)}/>
+      // </div>
       <div>
         <form onSubmit={(event)=>{
           event.preventDefault();

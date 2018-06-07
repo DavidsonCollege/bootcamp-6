@@ -6,11 +6,17 @@ import './index.css';
 
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import {createStore, applyMiddleware} from "redux";
+import {createStore, applyMiddleware, combineReducers} from "redux";
+import {reducer as formReducer } from 'redux-form';
 import ReduxThunk from 'redux-thunk'
 import reducer from "./reducer"
 
-const store = createStore(reducer,applyMiddleware(ReduxThunk));
+const rootReducer = combineReducers({
+  reducer,
+  form: formReducer
+})
+
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
