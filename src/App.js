@@ -14,13 +14,13 @@ class App extends Component {
 
   render() {
     return (
-      <div classNassme="App">
+      <div className="App">
 
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">The Greatest Todo List</h1>
         </header>
-
+        <newTaskForm/>
         <button onClick={() => this.props.dispatch(loadTodos())}>LOAD TODOS</button>
 
         <p className="App-intro">

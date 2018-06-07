@@ -1,6 +1,5 @@
 import React from 'react';
-import {addTodo, changeInput, changeDateInput, changeOrder, clearTodo, Orderings,
-  Colors, changeColor, deleteTodo, changeDate, completeTodo } from '../actions';
+import {deleteTodo} from '../actions';
 class CompletedList extends React.Component{
 
   render() {
@@ -10,7 +9,7 @@ class CompletedList extends React.Component{
         <ol>
           {this.props.todos.filter((item) => item.completed).map((todo) => {
             return <li key={todo._guid}>{todo.description} Completed
-      
+
             <br></br>
             <button onClick={() => this.props.dispatch(deleteTodo(todo._guid))}
         >Remove</button>

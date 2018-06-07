@@ -1,8 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-
-let newTaskForm = props => {
+let newTaskForm = (props) => {
   const { handleSubmit } = props
   return (
     <div>
