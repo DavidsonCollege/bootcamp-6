@@ -20,7 +20,9 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h1 className="App-title">The Greatest Todo List</h1>
                 </header>
-                <TaskForm onSubmit={(values) => {console.log(values)}}/>
+                <TaskForm onSubmit={(values) => {
+                    console.log(values)
+                }}/>
                 <button onClick={() => this.props.reducer.dispatch(loadTodos())}>LOAD TODOS</button>
 
                 <p className="App-intro">

@@ -2,7 +2,6 @@ import React from 'react';
 import {deleteTodo} from '../actions';
 
 class CompletedList extends React.Component {
-
     render() {
         return (
             <div>
@@ -22,7 +21,6 @@ class CompletedList extends React.Component {
             </div>
         )
     }
-
 }
 
 export default CompletedList;
