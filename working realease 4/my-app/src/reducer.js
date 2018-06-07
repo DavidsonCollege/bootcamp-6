@@ -54,7 +54,17 @@ function reducer(oldState = initialState, action){
       state.todos.sort((a, b) => a.description.localeCompare(b.description));
       return state;
     case ORDER_DATE:
-      state.todos.sort((a,b) => a.dateDue.localeCompare(b.dateDue));
+    state.todos.sort((a,b) => {
+      if(a.dateDue === null){
+        return 1;
+      }
+      if(b.dateDue === null){
+        return -1;
+      }
+      if(a.dateDue === b.dateDue)
+      return 0;
+      return a.dateDue < b.dateDue ? -1 : 1;
+    });
       return state;
     case COLOR_SET:
       state.todos.find((todo)=>todo._id===action.id).color = action.color;

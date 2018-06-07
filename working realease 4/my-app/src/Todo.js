@@ -41,18 +41,18 @@ class Todos extends Component {
         <div className="todos-container">
 
         <div className="undo button">
-          <button onClick={()=> this.props.reducer.dispatch(undo())}>Undo </button>
+          <button onClick={()=> this.props.dispatch(undo())}>Undo </button>
 
         </div>
 
         <div className="load button">
-          <button onClick={()=>this.props.reducer.dispatch(loadTodos())}>Load </button>
+          <button onClick={()=>this.props.dispatch(loadTodos())}>Load </button>
 
         </div>
 
         <div className="Ordering options">
-          <button onClick={() => this.props.reducer.dispatch(orderAlpha())}>alphabetically</button>
-          <button onClick={() => this.props.reducer.dispatch(setOrderingByDate())}>by date</button>
+          <button onClick={() => this.props.dispatch(orderAlpha())}>alphabetically</button>
+          <button onClick={() => this.props.dispatch(setOrderingByDate())}>by date</button>
         </div>
         <div className="completed-container">
         <h3>Completed Tasks</h3>
@@ -66,20 +66,20 @@ class Todos extends Component {
                     <input id="date" type="datetime-local"/>
                     <button onClick={(event)=>{
                       event.preventDefault();
-                      this.props.reducer.dispatch(setDate(event.target.date.value, todo._id))}
+                      this.props.dispatch(setDate(event.target.date.value, todo._id))}
                     }>Set Due Date</button>
                 </div>
 
               )}
               <button onClick={(event)=>{
                 event.preventDefault();
-                this.props.reducer.dispatch(onDeleteTodo(todo._id))}}>Delete</button>
+                this.props.dispatch(onDeleteTodo(todo._id))}}>Delete</button>
 
 
-              <button onClick={()=>this.props.reducer.dispatch(markAsUncomplete(todo._id))}>Mark as uncompleted</button>
+              <button onClick={()=>this.props.dispatch(markAsUncomplete(todo._id))}>Mark as uncompleted</button>
               <select onChange={(event)=>{
                 event.preventDefault();
-                this.props.reducer.dispatch(setColor(todo._id, event.target.value))}}>
+                this.props.dispatch(setColor(todo._id, event.target.value))}}>
                 <option value="black">black</option>
                 <option value="red">red</option>
                 <option value="yellow">yellow</option>
@@ -89,8 +89,8 @@ class Todos extends Component {
                 <option value="indigo">indigo</option>
               </select>
               <br></br>
-                {todo.star ? <h style={starStyle} onClick={()=>this.props.reducer.dispatch(setStar(todo._id))}>&#9733;</h> :
-                <h style={starStyle} onClick={()=>this.props.reducer.dispatch(setStar(todo._id))}>&#9734;</h> }
+                {todo.star ? <h style={starStyle} onClick={()=>this.props.dispatch(setStar(todo._id))}>&#9733;</h> :
+                <h style={starStyle} onClick={()=>this.props.dispatch(setStar(todo._id))}>&#9734;</h> }
             </div>);
         })
       }
@@ -106,7 +106,7 @@ class Todos extends Component {
                     <p>Due date: {todo.dateDue}</p>
                     <form onSubmit={(event) => {
                       event.preventDefault();
-                      this.props.reducer.dispatch(setDate(todo._id, event.target.date.value))}}>
+                      this.props.dispatch(setDate(todo._id, event.target.date.value))}}>
                     <input type="date" name="date"/>
                     <input type="submit" value="Set due date"/>
                     </form>
@@ -114,13 +114,13 @@ class Todos extends Component {
 
                 <button onClick={(event)=>{
                   event.preventDefault();
-                  this.props.reducer.dispatch(onDeleteTodo(todo._id))}}>
+                  this.props.dispatch(onDeleteTodo(todo._id))}}>
                   Delete</button>
-                <button onClick={()=>this.props.reducer.dispatch(markAsComplete(todo._id))}>Mark as completed</button>
+                <button onClick={()=>this.props.dispatch(markAsComplete(todo._id))}>Mark as completed</button>
 
                 <select onChange={(event)=>{
                   event.preventDefault();
-                  this.props.reducer.dispatch(setColor(todo._id, event.target.value))}
+                  this.props.dispatch(setColor(todo._id, event.target.value))}
                 }>
                   <option value="black">black</option>
                   <option value="red">red</option>
@@ -131,8 +131,8 @@ class Todos extends Component {
                   <option value="indigo">indigo</option>
                 </select>
                 <br></br>
-                  {todo.star ? <h1 style={starStyle} onClick={()=>this.props.reducer.dispatch(setStar(todo._id))}>&#9733;</h1> :
-                  <h1 style={starStyle} onClick={()=>this.props.reducer.dispatch(setStar(todo._id))}>&#9734;</h1> }
+                  {todo.star ? <h1 style={starStyle} onClick={()=>this.props.dispatch(setStar(todo._id))}>&#9733;</h1> :
+                  <h1 style={starStyle} onClick={()=>this.props.dispatch(setStar(todo._id))}>&#9734;</h1> }
               </div>);
           })
         }
@@ -143,7 +143,7 @@ class Todos extends Component {
       </div>
 
       <div>
-          <button onClick={() => this.props.reducer.dispatch(deleteAll())}>Delete all todos</button>
+          <button onClick={() => this.props.dispatch(deleteAll())}>Delete all todos</button>
       </div>
       </div>
     );
