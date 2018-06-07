@@ -1,94 +1,96 @@
-import {combineReducers} from 'redux'
-import {CHANGE_ORDER, Orderings,CLEAR_TODO, CHANGE_DATE_INPUT, CHANGE_INPUT, ADD_TODO, COMPLETE_TODO, DELETE_TODO,
-CHANGE_COLOR, CHANGE_DATE, UNDO, LOAD_TODOS} from './actions';
+import {
+    CHANGE_ORDER, Orderings, CLEAR_TODO, CHANGE_DATE_INPUT, CHANGE_INPUT, ADD_TODO, COMPLETE_TODO, DELETE_TODO,
+    CHANGE_COLOR, CHANGE_DATE, UNDO, LOAD_TODOS
+} from './actions';
 
-var defaultState ={
-  history:[],
-  todos: [],
-  input: "",
-  dateInput: null,
-  headers: [
-  {label: 'Description', key: 'description'},
-  {label: 'Due Date', key: 'dueDate'}
-  ]
-  }
+let defaultState = {
+    history: [],
+    todos: [],
+    input: "",
+    dateInput: null,
+    headers: [
+        {label: 'Description', key: 'description'},
+        {label: 'Due Date', key: 'dueDate'}
+    ]
+};
 
 function reducer(oldState = defaultState, action) {
-  let state = JSON.parse(JSON.stringify(oldState))
-  state.history.push(oldState);
+    let state = JSON.parse(JSON.stringify(oldState));
+    state.history.push(oldState);
 
-  switch(action.type) {
-    case LOAD_TODOS:
-      state.todos = action.todos;
-      return state;
-    case UNDO:
-      state.history.pop();
-      return state.history.pop();
-
-    case CHANGE_ORDER:
-      switch (action.order){
-        case Orderings.ALPHABETICAL:
-          state.todos.sort((a,b) => a.description.localeCompare(b.description) );
-          return state;
-        case Orderings.DUEDATE:
-          state.todos.sort((a,b) => {
-            if (a.dueDate === b.dueDate){
-              return 0;
-            }
-            return a.dueDate < b.dueDate ? -1:1;
-            })
+    switch (action.type) {
+        case LOAD_TODOS:
+            state.todos = action.todos;
             return state;
-        default: return state;
-      }
+        case UNDO:
+            state.history.pop();
+            return state.history.pop();
 
-    case CLEAR_TODO:
-      state.todos = [];
-      return state;
+        case CHANGE_ORDER:
+            switch (action.order) {
+                case Orderings.ALPHABETICAL:
+                    state.todos.sort((a, b) => a.description.localeCompare(b.description));
+                    return state;
+                case Orderings.DUEDATE:
+                    state.todos.sort((a, b) => {
+                        if (a.dueDate === b.dueDate) {
+                            return 0;
+                        }
+                        return a.dueDate < b.dueDate ? -1 : 1;
+                    });
+                    return state;
+                default:
+                    return state;
+            }
 
-    case CHANGE_DATE_INPUT:
-      state.dateInput = action.date;
-      return state;
+        case CLEAR_TODO:
+            state.todos = [];
+            return state;
 
-    case CHANGE_INPUT:
-      state.input = action.text;
-      return state;
+        case CHANGE_DATE_INPUT:
+            state.dateInput = action.date;
+            return state;
 
-    case ADD_TODO:
-      state.todos.push(action.todo)
-      return state;
-    case COMPLETE_TODO:
-      var currItem = state.todos.find((todo) => {
-        return todo._guid === action._guid
-      });
-      currItem.completed = true;
-      return state;
+        case CHANGE_INPUT:
+            state.input = action.text;
+            return state;
 
-    case DELETE_TODO:
-      var index = state.todos.findIndex((todo) => {
-        return todo._guid === action._guid;
-      });
+        case ADD_TODO:
+            state.todos.push(action.todo);
+            return state;
 
-      state.todos.splice(index,1);
-      return state;
+        case COMPLETE_TODO:
+            let item = state.todos.find((todo) => {
+                return todo._guid === action._guid
+            });
+            item.completed = true;
+            return state;
 
-    case CHANGE_COLOR:
-      var currItem = state.todos.find((todo) => {
-        return todo._guid === action._guid
-      });
-      currItem.color = action.color;
-      return state;
+        case DELETE_TODO:
+            let index = state.todos.findIndex((todo) => {
+                return todo._guid === action._guid;
+            });
 
-    case CHANGE_DATE:
-      var currItem = state.todos.find((todo) => {
-        return todo._guid === action._guid;
-      });
-      currItem.date = action.date;
-      return state;
+            state.todos.splice(index, 1);
+            return state;
 
-    default:
-      return state;
-  }
+        case CHANGE_COLOR:
+            let myItem = state.todos.find((todo) => {
+                return todo._guid === action._guid
+            });
+            myItem.color = action.color;
+            return state;
 
+        case CHANGE_DATE:
+            let currItem = state.todos.find((todo) => {
+                return todo._guid === action._guid;
+            });
+            currItem.date = action.date;
+            return state;
+
+        default:
+            return state;
+    }
 
 }
 
