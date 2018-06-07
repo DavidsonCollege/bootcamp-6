@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
 import {CHANGE_ORDER, Orderings,CLEAR_TODO, CHANGE_DATE_INPUT, CHANGE_INPUT, ADD_TODO, COMPLETE_TODO, DELETE_TODO,
-CHANGE_COLOR, CHANGE_DATE, UNDO} from './actions';
+CHANGE_COLOR, CHANGE_DATE, UNDO, LOAD_TODOS} from './actions';
 
 var defaultState ={
   history:[],
@@ -11,7 +11,6 @@ var defaultState ={
   {label: 'Description', key: 'description'},
   {label: 'Due Date', key: 'dueDate'}
   ]
-
   }
 
 function reducer(oldState = defaultState, action) {
@@ -19,6 +18,9 @@ function reducer(oldState = defaultState, action) {
   state.history.push(oldState);
 
   switch(action.type) {
+    case LOAD_TODOS:
+      state.todos = action.todos;
+      return state;
     case UNDO:
       state.history.pop();
       return state.history.pop();

@@ -5,7 +5,7 @@ import './App.css';
 import TodoList from './components/TodoList.js';
 import CompletedList from './components/CompletedList.js';
 import {CSVLink} from 'react-csv';
-import {undo} from './actions'
+import {undo, loadTodos} from './actions'
 
 
 class App extends Component {
@@ -18,6 +18,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">The Greatest Todo List</h1>
         </header>
+        <button onClick={() => this.props.dispatch(loadTodos())}>LOAD TODOS</button>
 
         <p className="App-intro">
 

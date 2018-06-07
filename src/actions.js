@@ -8,6 +8,7 @@ export const CHANGE_DATE_INPUT = 'CHANGE_DATE_INPUT'
 export const CHANGE_ORDER = 'CHANGE_ORDER'
 export const CLEAR_TODO = 'CLEAR_TODO'
 export const UNDO = 'UNDO'
+export const LOAD_TODOS = 'LOAD_TODOS'
 
 
 export const Colors = {
@@ -20,6 +21,14 @@ export const Colors = {
 export const Orderings ={
   ALPHABETICAL: 'ALPHABETICAL',
   DUEDATE: 'DUEDATE'
+}
+
+export function loadTodos(){
+    return (dispatch) =>{ return fetch('https://raw.githubusercontent.com/DavidsonCollege/bootcamp-6/master/todos.json')
+    .then((result) => result.json()).then((todos) => {dispatch({type: LOAD_TODOS, todos: todos})}  )
+
+    }
+
 }
 
 export function undo(){
