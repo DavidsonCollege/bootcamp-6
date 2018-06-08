@@ -27,9 +27,10 @@ export const markAsComplete = id => ({
   id
 })
 
-export const changeDate = event => ({
+export const changeDate = (dateDue,id) => ({
   type: 'CHANGE_DATE',
-  event
+  dateDue,
+  id
 })
 
 export const setDate = (event, id) => ({

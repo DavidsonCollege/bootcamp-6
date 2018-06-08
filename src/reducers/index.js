@@ -35,6 +35,7 @@ function myReducer(prevState = defaultState, action){
       return {...state, input:inputValue};
     case "ADD_A_TODO":
       // console.log(action);
+      // console.log("+++++++");
       // action.event.preventDefault();
       let newToDo = {description: action.description, dateDue: null, isComplete: false, _id: state.counter, color: "black", star: false};
       let newTodos = [...state.todos];
@@ -49,13 +50,17 @@ function myReducer(prevState = defaultState, action){
       todos.find((todo)=>todo._id===action.id).isComplete = false;
       return {...state, todos:todos};
     case 'CHANGE_DATE':
-      action.event.preventDefault();
-      return {...state, date: action.event.target.value};
+      // action.event.preventDefault();
+      console.log("HERE.");
+      console.log(action);
+      todos = [...state.todos];
+      todos.find((todo)=>todo._id===action.id).dateDue = action.dateDue;
+      return {...state, todos};
     case 'SET_DATE':
       action.event.preventDefault();
       todos = [...state.todos];
       todos.find((todo)=>todo._id===action.id).dateDue = state.date;
-      return {...state, todos:todos};
+      return {...state, todos};
     case 'SET_ORDERING_ALPHABETICALLY':
       return {...state, ordering: "alphabetically"};
     case 'SET_ORDERING_BY_DATE':
@@ -64,12 +69,12 @@ function myReducer(prevState = defaultState, action){
       action.event.preventDefault();
       todos = [...state.todos];
       todos.find((todo)=>todo._id===action.id).color = action.event.target.value;
-      return {...state, todos:todos};
+      return {...state, todos};
     case 'SET_STAR':
       todos = [...state.todos];
       let todo = todos.find((todo)=>todo._id===action.id);
       todo.star = (todo.star) ? false : true;
-      return {...state, todos:todos};
+      return {...state, todos};
     case 'UNDO':
       let history = [...state.history];
       history.pop();

@@ -5,7 +5,8 @@ import { onDeleteTodo,deleteAll,onChange,onAddToDo,
   markAsComplete,markAsUncomplete, changeDate, setDate, setOrdering, setOrderingByDate,
  setColor, setStar, undo, loadTodos} from '../actions'
 import { Field, reduxForm } from 'redux-form';
-import Form from './Form'
+import Form from './Form';
+import FormChangeDate from './FormChangeDate';
 
 class Todos extends Component {
 
@@ -56,11 +57,9 @@ class Todos extends Component {
               <div style={{color:todo.color}}>{todo.description}</div>
               {todo.dateDue ? (<div>{todo.dateDue}</div>) : (
                 <div>
-                  <div>Due date not set</div>
-                    <input id="date" type="datetime-local" onChange={this.props.changeDate}/>
-                    <button onClick={(event)=>this.props.dispatch(setDate(event, todo._id))}>Set Due Date</button>
+                <FormChangeDate state={this.props.state} dispatch={this.props.dispatch}
+                onSubmit={(values) => {this.props.dispatch(changeDate(values.dateDue,todo._id))}}/>
                 </div>
-
               )}
               <button onClick={()=>this.props.dispatch(onDeleteTodo(todo._id))}>Delete</button>
               <button onClick={()=>this.props.dispatch(markAsUncomplete(todo._id))}>Mark as uncompleted</button>
@@ -89,9 +88,8 @@ class Todos extends Component {
                 <div style={{color:todo.color}}>{todo.description}</div>
                 {todo.dateDue ? (<div>{todo.dateDue}</div>) : (
                   <div>
-                    <div>Due date not set</div>
-                      <input id="date" type="datetime-local" onChange={(event) => this.props.dispatch(changeDate(event))}/>
-                      <button onClick={(event)=>this.props.dispatch(setDate(event, todo._id))}>Set Due Date</button>
+                  <FormChangeDate state={this.props.state} dispatch={this.props.dispatch}
+                  onSubmit={(values) => {this.props.dispatch(changeDate(values.dateDue,todo._id))}}/>
                   </div>
                 )}
                 <button onClick={()=>this.props.dispatch(onDeleteTodo(todo._id))}>Delete</button>
@@ -114,10 +112,8 @@ class Todos extends Component {
         }
       </div>
       <div>
-        <form onSubmit={(event)=> this.props.dispatch(onAddToDo(event))}>
-          Add a todo: <input type="text" name="description" onChange={(event)=>this.props.dispatch(onChange(event))}/>
-          <input type="submit" value="submit"/>
-        </form>
+      <Form state={this.props.state} dispatch={this.props.dispatch}
+      onSubmit={(values) => {console.log(values); this.props.dispatch(onAddToDo(values.description))}}/>
       </div>
       <div>
           <button onClick={()=>this.props.dispatch(deleteAll)}>Delete all todos</button>
@@ -128,11 +124,7 @@ class Todos extends Component {
           <button onClick={() => this.props.dispatch(loadTodos())}>LOAD TODOS</button>
 
       </div>
-      <div>
-      <Form state={this.props.state} dispatch={this.props.dispatch}
-      onSubmit={(values) => {this.props.dispatch(onAddToDo(values.description))}}/>
 
-      </div>
       </div>
 
     );
