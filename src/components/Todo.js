@@ -3,17 +3,12 @@ import {CSVLink, CSVDownload} from 'react-csv';
 import { connect } from 'react-redux'
 import { onDeleteTodo,deleteAll,onChange,onAddToDo,
   markAsComplete,markAsUncomplete, changeDate, setDate, setOrdering, setOrderingByDate,
- setColor, setStar, undo} from '../actions'
-
-
-// function Todo(props){
-//   return (<div> clssName="todo" {props.value.description}</div>);
-// }
+ setColor, setStar, undo, loadTodos} from '../actions'
+import { Field, reduxForm } from 'redux-form';
+import Form from './Form'
 
 class Todos extends Component {
-  // renderTodo(i){
-  //   return (<Todo value={this.props.todos[i].description}/>);
-  // }
+
   reorder(array){
     let temp = [...array];
     temp.sort((a, b) => a.description.localeCompare(b.description));
@@ -63,7 +58,7 @@ class Todos extends Component {
                 <div>
                   <div>Due date not set</div>
                     <input id="date" type="datetime-local" onChange={this.props.changeDate}/>
-                    <button onClick={(event)=>this.props.setDate(event, todo._id)}>Set Due Date</button>
+                    <button onClick={(event)=>this.props.dispatch(setDate(event, todo._id))}>Set Due Date</button>
                 </div>
 
               )}
@@ -127,11 +122,25 @@ class Todos extends Component {
       <div>
           <button onClick={()=>this.props.dispatch(deleteAll)}>Delete all todos</button>
           <CSVLink data={state.todos}>Download</CSVLink>
+          <br></br>
           <button onClick={()=> this.props.dispatch(undo)}>UNDO</button>
+          <br></br>
+          <button onClick={() => this.props.dispatch(loadTodos())}>LOAD TODOS</button>
+
+      </div>
+      <div>
+      <Form state={this.props.state} dispatch={this.props.dispatch}
+      onSubmit={(values) => {this.props.dispatch(onAddToDo(values.description))}}/>
+
       </div>
       </div>
+
     );
   }
 }
+//
+// Todos = reduxForm({
+//   form: 'addform'
+// })(Todos)
 
 export default Todos;

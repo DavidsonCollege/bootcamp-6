@@ -1,6 +1,6 @@
-export const onAddToDo = event => ({
+export const onAddToDo = description => ({
   type: 'ADD_A_TODO',
-  event
+  description
 })
 
 export const onChange = event => ({
@@ -59,4 +59,58 @@ export const setStar = id => ({
 
 export const undo = {
   type: 'UNDO'
+}
+
+export const LOAD_TODOS = "LOAD_TODOS"
+export const loadingTodos = tempTodos => {
+  return {
+    type: LOAD_TODOS,
+    tempTodos
+  }
+}
+export function loadTodos(){
+  return (dispatch) => {
+  return fetch("https://raw.githubusercontent.com/DavidsonCollege/bootcamp-6/master/todos.json").then((res) => {
+    return res.json().then((res) => {
+      let tempTodos = [];
+        res.map((todo) => {
+          let newTodo = {
+            description: todo.description,
+            isComplete: todo.completed,
+            color: todo.color,
+            dateDue: todo.dueDate,
+            _id: todo._id,
+            star: false
+          };
+          tempTodos.push(newTodo);
+        });
+        dispatch(loadingTodos(tempTodos));
+    });
+  });
+}
+  // todos = [...state.todos];
+  // let result = fetch("https://raw.githubusercontent.com/DavidsonCollege/bootcamp-6/master/todos.json").then(
+  //   function(res){
+  //     // console.log(res);
+  //     return res.json();
+  //   },
+  //   console.log("++++++"),
+  //
+  // ).then(function(res){
+  //   let tempTodos = [];
+  //   res.map((todo) => {
+  //     let newTodo = {
+  //       description: todo.description,
+  //       isComplete: todo.completed,
+  //       color: todo.color,
+  //       dateDue: todo.dueDate,
+  //       _id: todo._id,
+  //       star: false
+  //     };
+  //     tempTodos.push(newTodo);
+  //   });
+  //   return tempTodos;
+  // });
+  // console.log(result);
+
 }
